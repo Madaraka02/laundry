@@ -7,10 +7,6 @@ PAYMENT_CHOICES = (
     ("SWIPE", "SWIPE"),
 )
 
-CONDITION_CHOICES = (
-    ("GOOD", "GOOD"),
-    ("BAD", "BAD"),
-)
 
 
 class Client(models.Model):
