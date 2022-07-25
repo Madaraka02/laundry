@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'wash.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME':'db.sqlite3',
+        'USER':'lcrwdtyjerezdz',
+        'HOST': 'ec2-52-204-157-26.compute-1.amazonaws.com',
+        'PASSWORD': '720a54b198a676ed12fe8bbc4a280ffecfb00bc606fd625493c9f69c82a2cfc8',
+        'POST': 5432,
     }
 }
 
@@ -114,6 +118,7 @@ TIME_ZONE = 'Africa/Nairobi'
 USE_I18N = True
 
 USE_TZ = True
+
 
 
 # Static files (CSS, JavaScript, Images)
