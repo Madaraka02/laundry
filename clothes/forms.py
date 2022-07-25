@@ -17,12 +17,10 @@ class ClientForm(ModelForm):
     class Meta:
         model = Client
         fields = '__all__'
-        exclude = ['picked', 'check_out_date', 'check_out_time', 'payment_method']
+        exclude = ['picked', 'check_out_date', 'payment_method']
         widgets = {
             'check_in_date': DateInput(attrs={'min': today}),
             'check_out_date': DateInput(attrs={'min': today}),
-            'check_out_time': TimePickerInput(),
-            'check_in_time': TimePickerInput(),
         } 
 
 class ClientUpdateForm(ModelForm):
@@ -33,7 +31,5 @@ class ClientUpdateForm(ModelForm):
         widgets = {
             'check_in_date': DateInput(attrs={'min': today}),
             'check_out_date': DateInput(attrs={'min': today}),
-            'check_out_time': TimePickerInput(),
-            'check_in_time': TimePickerInput(),
 
         } 
