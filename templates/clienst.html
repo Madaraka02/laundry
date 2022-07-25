@@ -1,0 +1,192 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annie</title>
+
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css"
+    rel="stylesheet"
+    />
+    </head>
+<body>
+        <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container">
+      <!-- Navbar brand -->
+      <a class="navbar-brand me-2" href="{% url 'home' %}">HOME
+      </a>
+  
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarButtonsExample"
+        aria-controls="navbarButtonsExample"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarButtonsExample">
+        <!-- Left links -->
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+          </li> -->
+          <li class="justify-content-center ">
+
+          </li>
+        </ul>
+
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+
+    <div class="container mt-4 mb-4">
+        <div class="row mt-4 mb-4">
+            <div class="col-md-1"></div>
+
+            <div class=" col-md-10 mt-4 mb-4 shadow-lg">
+                <h6 class="text-uppercase mt-2 mb-2">All client clothes 
+                <span class="float-end">
+
+                </span>
+            </h6>
+            <table class="table align-middle mb-2 bg-white">
+                <thead class="bg-light">
+                  <tr>
+                    <th>Client Name</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>Picked</th>
+                    <th>Payment Method</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+
+
+                  </tr>
+                </thead>
+                {% if clothes  %}
+                <tbody>
+                    
+                    {% for cloth in clothes %}
+                  <tr>
+                    <td><p class="fw-bold mb-1">{{cloth.client_name}}</p></td>
+                    <td><p class="fw-normal mb-1">{{cloth.check_in_date|date:"Y M d"}} 
+                        <span class="badge badge-success">{{cloth.check_in_time}}</span>
+
+                        </p></td>
+                    <td><p class="fw-normal mb-1">{{cloth.check_out_date|date:"Y M d"}} 
+                        <span class="badge badge-success">{{cloth.check_out_time}}</span>
+
+                        </p></td>
+                    <td><p class="fw-normal mb-1">
+                        {%  if cloth.picked == True %}
+                        <span class="badge badge-success">YES</span>
+                        {% else %}
+                        <span class="badge badge-danger">NO</span>
+
+                        {% endif %}
+
+                    </p></td>
+
+                    <td><p class="fw-normal mb-1">{{cloth.payment_method}}</p></td>
+
+                    
+
+
+                    
+                    <td> 
+                        <a href="{% url 'edit' cloth.id %}" class="btn btn-outline-primary">Edit</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'delete' cloth.id %}" class="btn btn-outline-danger">Delete</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+
+            
+                </tbody>
+                {% endif %}
+
+              </table>
+
+              <div class="container mt-2 align-items-center justify-content-center">
+                <div class="row text-center">
+
+
+              <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    {% if clothes.has_previous %}    
+                    <li class="page-item">
+                      <a href="?page={{ clothes.previous_page_number }}" class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    {% endif %}
+                    <li class="page-item"><a class="page-link" href="#">
+                      page {{ clothes.number }} of {{ clothes.paginator.num_pages }}
+                    </a></li>
+                    {% if clothes.has_next %}
+                    <li class="page-item">
+                      <a href="?page={{ clothes.next_page_number }}" class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                    {% endif %}
+                  </ul>
+                </nav>
+              </div>
+            </div>
+                            <!-- <p class="card-text">bids</p> -->
+                            <!-- {% for itbid in item.bid_set.all %}
+                                {{itbid.price}}
+                            {%  endfor %} -->
+
+
+
+            </div>
+            <div class="col-md-1"></div>
+
+        </div>
+    </div>
+
+
+
+
+
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"
+></script>    
+<!-- kdb 716 A -->
+</body>
+</html>
+
+
+
+
