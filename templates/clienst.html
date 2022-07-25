@@ -95,12 +95,12 @@
                     {% for cloth in clothes %}
                   <tr>
                     <td><p class="fw-bold mb-1">{{cloth.client_name}}</p></td>
-                    <td><p class="fw-normal mb-1">{{cloth.check_in_date|date:"Y M d"}} 
-                        <span class="badge badge-success">{{cloth.check_in_time}}</span>
+                    <td><p class="fw-normal mb-1">{{cloth.check_in_date}} 
+                        <!-- <span class="badge badge-success">{{cloth.check_in_time}}</span> -->
 
                         </p></td>
-                    <td><p class="fw-normal mb-1">{{cloth.check_out_date|date:"Y M d"}} 
-                        <span class="badge badge-success">{{cloth.check_out_time}}</span>
+                    <td><p class="fw-normal mb-1">{{cloth.check_out_date}} 
+                        <!-- <span class="badge badge-success">{{cloth.check_out_time}}</span> -->
 
                         </p></td>
                     <td><p class="fw-normal mb-1">
