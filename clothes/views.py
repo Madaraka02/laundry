@@ -6,7 +6,6 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # Create your views here.
 
 def home(request):
-    # clothes = Client.objects.all().order_by('-id')
 
     form = ClientForm()
     if request.method == 'POST':
@@ -17,7 +16,6 @@ def home(request):
 
     context = {
         'form':form,
-        # 'clothes':clothes
     }  
     return render(request, 'home.html', context)      
 
