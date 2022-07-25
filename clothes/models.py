@@ -18,4 +18,4 @@ class Client(models.Model):
     check_in_date = models.DateTimeField(auto_now_add=True,null=True, blank=True)
     picked = models.BooleanField(default=False)
     check_out_date = models.DateTimeField(auto_now=True,null=True, blank=True)
-    payment_method = models.CharField(max_length = 20,choices = PAYMENT_CHOICES, default = 'CASH')    
+    payment_method = models.CharField(max_length = 20,choices = PAYMENT_CHOICES, default = 'CASH', blank=True, null=True)    
