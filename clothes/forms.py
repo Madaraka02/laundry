@@ -17,7 +17,7 @@ class ClientForm(ModelForm):
     class Meta:
         model = Client
         fields = '__all__'
-        exclude = ['picked', 'check_out_date', 'payment_method']
+        exclude = ['picked','payment_method']
         # widgets = {
         #     'check_in_date': DateInput(attrs={'min': today}),
         #     'check_out_date': DateInput(attrs={'min': today}),
