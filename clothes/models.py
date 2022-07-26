@@ -15,7 +15,7 @@ CONDITION_CHOICES = (
 
 class Client(models.Model):
     client_name = models.CharField(max_length=400, null=True, blank=True)
-    check_in_date = models.DateField(null=True, blank=True)
+    check_in_date = models.DateTimeField(null=True, blank=True)
     check_in_time = models.TimeField(null=True, blank=True)
     picked = models.BooleanField(default=False)
     check_out_date = models.DateTimeField(null=True, blank=True)
