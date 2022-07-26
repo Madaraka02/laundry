@@ -7,6 +7,19 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 def home(request):
 
+    clients_list = Client.objects.all().order_by('-id')
+    page = request.GET.get('page', 1)
+    paginator = Paginator(clients_list, 10)
+
+    try:
+        clothes = paginator.page(page)
+    except PageNotAnInteger:
+        clothes = paginator.page(1)
+    except EmptyPage:
+        clothes = paginator.page(paginator.num_pages)
+
+
+
     form = ClientForm()
     if request.method == 'POST':
         form = ClientForm(request.POST)
@@ -16,6 +29,8 @@ def home(request):
 
     context = {
         'form':form,
+        'clothes':clothes
+
     }  
     return render(request, 'home.html', context)      
 

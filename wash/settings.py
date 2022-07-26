@@ -41,7 +41,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'clothes',
+    'users',
+    'phonenumber_field',
 ]
+
+AUTH_USER_MODEL = "users.User"
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

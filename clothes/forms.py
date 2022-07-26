@@ -30,7 +30,7 @@ class ClientUpdateForm(ModelForm):
     class Meta:
         model = Client
         fields = '__all__'
-        exclude = ['check_in_date', 'check_in_time']
+        exclude = ['check_in_date', 'check_in_time','paid']
 
         widgets = {
             'check_in_date': DateInput(attrs={'min': today}),

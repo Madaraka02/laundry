@@ -1,4 +1,5 @@
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 PAYMENT_CHOICES = (
@@ -20,4 +21,7 @@ class Client(models.Model):
     picked = models.BooleanField(default=False)
     check_out_date = models.DateTimeField(null=True, blank=True)
     check_out_time = models.TimeField(null=True, blank=True)
-    payment_method = models.CharField(max_length = 20,choices = PAYMENT_CHOICES, default = 'CASH')    
+    phone_number = PhoneNumberField(null=True)
+    paid = models.BooleanField(default=False)
+    payment_method = models.CharField(max_length = 20,choices = PAYMENT_CHOICES, default = 'CASH')   
+ 
