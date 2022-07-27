@@ -22,6 +22,7 @@ class Client(models.Model):
     check_out_date = models.DateTimeField(null=True, blank=True)
     check_out_time = models.TimeField(null=True, blank=True)
     phone_number = PhoneNumberField(null=True)
+    amount = models.PositiveIntegerField(null=True, blank=False)
     paid = models.BooleanField(default=False)
     payment_method = models.CharField(max_length = 20,choices = PAYMENT_CHOICES, default = 'CASH')   
  
