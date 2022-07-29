@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from .models import *
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
@@ -131,7 +133,7 @@ def lipa_na_mpesa_online(request, id):
 #         "ResultDesc": "Accepted"
 #     }
 #     return JsonResponse(dict(context))
-
+@login_required
 def home(request):
 
     clients_list = Client.objects.all().order_by('-id')
