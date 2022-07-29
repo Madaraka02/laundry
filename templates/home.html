@@ -38,7 +38,7 @@
     <!-- Container wrapper -->
     <div class="container">
       <!-- Navbar brand -->
-      <a class="navbar-brand me-2" href="{% url 'home' %}">HOME
+      <a class="navbar-brand me-2" href="{% url 'home' %}">Laundry services
       </a>
   
       <!-- Toggle button -->
@@ -143,10 +143,25 @@
                 
 
 
-                
+                {%  if cloth.picked == True and cloth.paid == False  %}
+                <td> 
+                  <a href="{% url 'lipa_na_mpesa' cloth.id %}" class="btn btn-outline-primary">Lipisha</a>
+
+                </td>
+                {% endif %}
+
+                {%  if cloth.picked == True and cloth.paid == True %}
+                <td> 
+                  <a href="{% url 'receipt' cloth.id %}" class="btn btn-outline-primary">Receipt</a>
+                </td>
+                {% endif %}
+
+                {%  if cloth.picked == False and cloth.paid == False %}
                 <td> 
                     <a href="{% url 'edit' cloth.id %}" class="btn btn-outline-primary">Edit</a>
                 </td>
+                {% endif %}
+
                 <td>
                     <a href="{% url 'delete' cloth.id %}" class="btn btn-outline-danger">Delete</a>
                 </td>
@@ -200,11 +215,11 @@
 </div>
     <div id="addclient" class="container mt-4 mb-4 align-items-center justify-content-center">
         <div class="row mt-4 mb-4">
-            <div class="col-md-1 mt-4 mb-4 p-3">
+            <div class="col-md-3 mt-4 mb-4 p-3">
                 <p class="text-center"></p>
 
             </div>
-            <div class="col-md-5 mt-4 mb-4 p-3">
+            <div class="col-md-6 mt-4 mb-4 p-3">
                 <p class="text-center"></p>
                 <div class="card mt-2 mb-2 shadow-sm">
                     <div class="card-body">
@@ -217,15 +232,15 @@
                 </div>
 
             </div>
-            <div class="col-md-5 mt-4 mb-4p-3">
-            <div class="col-md-1 mt-4 mb-4p-3">
+            <div class="col-md-3 mt-4 mb-4p-3">
+              
 
                 <p class="text-center"></p>
             </div>
 
         </div>
     </div>
-
+   
 
 
 <!-- MDB -->

@@ -4,6 +4,7 @@ from django import forms
 from datetime import date
 
 
+
 class DateInput(forms.DateInput):
     input_type = 'date'
 
@@ -17,7 +18,7 @@ class ClientForm(ModelForm):
     class Meta:
         model = Client
         fields = '__all__'
-        exclude = ['picked', 'check_out_date', 'check_out_time', 'payment_method']
+        exclude = ['picked', 'check_out_date', 'check_out_time', 'payment_method', 'paid', 'order_no','served_by']
         widgets = {
             'check_in_date': DateInput(attrs={'min': today}),
             'check_out_date': DateInput(attrs={'min': today}),
@@ -30,7 +31,7 @@ class ClientUpdateForm(ModelForm):
     class Meta:
         model = Client
         fields = '__all__'
-        exclude = ['check_in_date', 'check_in_time','paid']
+        exclude = ['check_in_date', 'check_in_time','paid', 'order_no','served_by']
 
         widgets = {
             'check_in_date': DateInput(attrs={'min': today}),
