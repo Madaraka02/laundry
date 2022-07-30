@@ -38,7 +38,14 @@
     <!-- Container wrapper -->
     <div class="container">
       <!-- Navbar brand -->
-      <a class="navbar-brand me-2" href="{% url 'home' %}">Laundry services
+      <a class="navbar-brand me-2" href="{% url 'home' %}">
+        <img
+        src="{% static 'img/logog.png' %}"
+        height="60"
+        width="100"
+        alt="Logo"
+        loading="lazy"
+      />
       </a>
   
       <!-- Toggle button -->
