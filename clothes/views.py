@@ -208,13 +208,35 @@ def editClient(request, id):
 
     }       
 
-    return render(request, 'update.html', context)      
+    return render(request, 'update.html', context)    
+
+def editServicec(request, id):
+    service = get_object_or_404(Service, id=id)
+
+    form = ServiceForm(instance=client)
+    if request.method == 'POST':
+        form = ServiceForm(request.POST,instance=client)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    context = {
+        'form':form,
+        'service':service
+
+    }       
+
+    return render(request, 'update.html', context)         
 
 def clientDelete(request, id):
     client = get_object_or_404(Client, id=id)
     client.delete()
     return redirect('home')
 
+def serviceDelete(request, id):
+    service = get_object_or_404(Service, id=id)
+    service.delete()
+    return redirect('home')
 
 import io
 from django.http import FileResponse
