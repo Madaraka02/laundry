@@ -256,6 +256,8 @@ def receipt(request, id):
 
     # Draw things on the PDF. Here's where the PDF generation happens.
     # See the ReportLab documentation for the full list of functionality.
+    p.setFillColorRGB(1,0,0)
+    # p.setFont("Helvetica", 30)
     p.drawString(200,805, "LAUNDRY SERVICES RECEIPT")
     p.drawString(20,785, f"Receipt No: {client.order_no}")
 
