@@ -17,6 +17,12 @@ CONDITION_CHOICES = (
     ("GOOD", "GOOD"),
     ("BAD", "BAD"),
 )
+class Service(models.Model):
+    service_name = models.CharField(max_length=400, null=True, blank=True)
+    price = models.PositiveIntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return self.service_name
 
 
 class Client(models.Model):
@@ -25,7 +31,7 @@ class Client(models.Model):
     client_name = models.CharField(max_length=400, null=True, blank=True)
 
     # order_no = models.CharField(max_length=400, null=True, blank=True)
-    service = models.CharField(max_length=500, null=True, blank=True)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, null=True)
 
     check_in_date = models.DateTimeField(null=True, blank=True)
     check_in_time = models.TimeField(null=True, blank=True)
@@ -36,7 +42,7 @@ class Client(models.Model):
 
     served_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
-    amount = models.PositiveIntegerField(null=True, blank=False)
+    # amount = models.PositiveIntegerField(null=True, blank=False)
     paid = models.BooleanField(default=False)
     payment_method = models.CharField(max_length = 20,choices = PAYMENT_CHOICES, default = 'CASH')   
  

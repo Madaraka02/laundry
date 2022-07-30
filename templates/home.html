@@ -59,14 +59,18 @@
         <!-- Left links -->
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a href="#addclient" class="btn btn-outline-primary btn-md mt-2">Add Customer</a>
+            <a href="#addclient" class="btn btn-outline-primary btn-md mt-2">Clients</a>
         
           </li>
           {% if request.user.is_authenticated %}
+          <button type="button" class="btn btn-outline-primary btn-md m-2" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+            Add service
+          </button>
           <li class="nav-item">
             <a href="{% url 'logout' %}" class="btn btn-outline-primary btn-md m-2">LOGOUT</a>
         
           </li>
+
 
           {% else %}
           <li class="nav-item">
@@ -90,7 +94,35 @@
     <!-- Container wrapper -->
   </nav>
   <!-- Navbar -->
-  <div class="container mt-4 mb-4">
+  <div  class="container mt-4 mb-4 align-items-center justify-content-center">
+    <div class="row mt-4 mb-4">
+        <div class="col-md-3 mt-4 mb-4 p-3">
+            <p class="text-center"></p>
+
+        </div>
+        <div class="col-md-6 mt-4 mb-4 p-3">
+            <p class="text-center"></p>
+            <div class="card mt-2 mb-2 shadow-sm">
+                <div class="card-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{form|crispy}}
+                        <button type="submit" class="btn btn-outline-primary btn-lg mt-2">  Add Client</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3 mt-4 mb-4p-3">
+          
+
+            <p class="text-center"></p>
+        </div>
+
+    </div>
+</div>
+
+  <div id="addclient" class="container mt-4 mb-4">
     <div class="row mt-4 mb-4">
         <div class="col-md-1"></div>
 
@@ -213,35 +245,34 @@
 
     </div>
 </div>
-    <div id="addclient" class="container mt-4 mb-4 align-items-center justify-content-center">
-        <div class="row mt-4 mb-4">
-            <div class="col-md-3 mt-4 mb-4 p-3">
-                <p class="text-center"></p>
 
-            </div>
-            <div class="col-md-6 mt-4 mb-4 p-3">
-                <p class="text-center"></p>
-                <div class="card mt-2 mb-2 shadow-sm">
-                    <div class="card-body">
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            {{form|crispy}}
-                            <button type="submit" class="btn btn-outline-primary btn-lg mt-2">  Add Client</button>
-                        </form>
-                    </div>
-                </div>
+<!-- Button trigger modal -->
 
-            </div>
-            <div class="col-md-3 mt-4 mb-4p-3">
-              
 
-                <p class="text-center"></p>
-            </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="modal-title" id="exampleModalLabel">Add service</p>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="card mt-2 mb-2 shadow-sm">
+          <div class="card-body">
+              <form action="" method="post">
+                  {% csrf_token %}
+                  {{sform|crispy}}
+                  <button type="submit" class="btn btn-outline-primary btn-lg mt-2">Save</button>
+              </form>
+          </div>
+      </div>
 
-        </div>
+      </div>
+
     </div>
-   
-
+  </div>
+</div>
 
 <!-- MDB -->
 

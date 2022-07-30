@@ -85,7 +85,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'wash.wsgi.application'
-
+CSRF_TRUSTED_ORIGINS =['https://61b8-102-222-144-66.in.ngrok.io']
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -138,6 +138,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

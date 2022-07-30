@@ -45,7 +45,7 @@ def lipa_na_mpesa_online(request, id):
             "Password": LipanaMpesaPpassword.decode_password,
             "Timestamp": LipanaMpesaPpassword.lipa_time,
             "TransactionType": "CustomerPayBillOnline",
-            "Amount": order.amount,
+            "Amount": order.service.price,
             "PartyA": int(phone),  # replace with your phone number to get stk push...convert phone number to integer
             "PartyB": LipanaMpesaPpassword.Business_short_code,
             "PhoneNumber": int(phone),  # replace with your phone number to get stk push...convert phone number to integer
@@ -156,9 +156,18 @@ def home(request):
             form.save()
             return redirect('home')
 
+    sform = ServiceForm()
+    if request.method == 'POST':
+        sform = ServiceForm(request.POST)
+        if sform.is_valid():
+            sform.save()
+            return redirect('home')  
+
     context = {
         'form':form,
-        'clothes':clothes
+        'clothes':clothes,
+        'sform':sform
+
 
     }  
     return render(request, 'home.html', context)      
@@ -225,14 +234,21 @@ def receipt(request, id):
 
     # Draw things on the PDF. Here's where the PDF generation happens.
     # See the ReportLab documentation for the full list of functionality.
-    p.drawString(10,280, "LAUNDRY SERVICES RECEIPT")
+    p.drawString(200,805, "LAUNDRY SERVICES RECEIPT")
+    p.drawString(20,785, f"Receipt No: {client.order_no}")
 
-    p.drawString(10,260, f"Receipt No: {client.order_no}")
-    p.drawString(10,240, f"Payment Mode: {client.payment_method}")
-    p.drawString(10,220, f"Amount:{client.amount}")
-    p.drawString(10,200, f"Service:{client.service}")
-    p.drawString(10,180, f"Date: {client.check_out_date.strftime('%Y-%m-%d')}")
-    p.drawString(10,160, f"served by:{client.served_by.username}")
+    p.drawString(25,765, f"PAYMENT MODE")
+    p.drawString(200,765, f"AMOUNT")
+    p.drawString(300,765, f"SERVICE")
+    p.drawString(400,765, f"DATE")
+    p.line(10,760,580,760)
+
+
+    p.drawString(25,740, f"{client.payment_method}")
+    p.drawString(200,740, f"{client.service.price}")
+    p.drawString(300,740, f"{client.service.service_name}")
+    p.drawString(400,740, f"{client.check_out_date.strftime('%Y-%m-%d')}")
+    p.drawString(20,660, f"served by:{client.served_by.username}")
 
 
     # date_time = now.
@@ -242,7 +258,7 @@ def receipt(request, id):
     # Close the PDF object cleanly, and we're done.
     # p.showPage()
 
-    p.setPageSize((500, 300))
+    # p.setPageSize((500, 300))
     p.showPage()
     p.save()
 

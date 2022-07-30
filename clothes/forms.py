@@ -40,3 +40,8 @@ class ClientUpdateForm(ModelForm):
             'check_in_time': TimePickerInput(),
 
         } 
+
+class ServiceForm(ModelForm):
+    class Meta:
+        model = Service
+        fields = '__all__'        
