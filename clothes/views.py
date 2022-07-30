@@ -210,7 +210,7 @@ def editClient(request, id):
 
     return render(request, 'update.html', context)    
 
-def editServicec(request, id):
+def editService(request, id):
     service = get_object_or_404(Service, id=id)
 
     form = ServiceForm(instance=client)
